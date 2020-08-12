@@ -7,7 +7,7 @@ import sys
 
 
 
-f=open("E:\braille\MUSOC.txt","w+")
+f=open("E:\braille\braille.txt","w+")
 
 for i in range(4):
     img=cv2.imread('E:\braille\part'+str(i)+'.jpg')
