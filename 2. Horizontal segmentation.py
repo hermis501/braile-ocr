@@ -2,13 +2,12 @@ import cv2
 import numpy as np
 import math
 
-th2=cv2.imread('e:/braille/roi.jpg')
-###
-#horizontalStructure = cv2.getStructuringElement(cv2.MORPH_RECT, (2000,13))
-#horizontalStructure = np.ones((2000,13),np.uint8)
-#horizontal = cv2.dilate(th2, horizontalStructure, (-1, -1))
-#r,c,w=horizontal.shape
-# cv2.imwrite("E:/braille/horizontal2.jpg", horizontal)
+th2=cv2.imread('e:/braille/small.png')
+horizontalStructure = cv2.getStructuringElement(cv2.MORPH_RECT, (2000,13))
+horizontalStructure = np.ones((2000,13),np.uint8)
+horizontal = cv2.dilate(th2, horizontalStructure, (-1, -1))
+r,c,w=horizontal.shape
+cv2.imwrite("E:/braille/horizontal2.jpg", horizontal)
 
 
 img = cv2.imread('E:/braille/horizontal2.jpg')
