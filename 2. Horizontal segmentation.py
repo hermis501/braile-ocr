@@ -2,20 +2,20 @@ import cv2
 import numpy as np
 import math
 
-th2=cv2.imread('e:\braille\roi.jpg')
+th2=cv2.imread('e:/braille/roi.jpg')
 ###
 #horizontalStructure = cv2.getStructuringElement(cv2.MORPH_RECT, (2000,13))
 #horizontalStructure = np.ones((2000,13),np.uint8)
 #horizontal = cv2.dilate(th2, horizontalStructure, (-1, -1))
 #r,c,w=horizontal.shape
-# cv2.imwrite("E:\braille\horizontal2.jpg", horizontal)
+# cv2.imwrite("E:/braille/horizontal2.jpg", horizontal)
 
 
-img = cv2.imread('E:\braille\horizontal2.jpg')
+img = cv2.imread('E:/braille/horizontal2.jpg')
 
 #defining the edges
 edges = cv2.Canny(img,50,150,apertureSize = 3)
-cv2.imwrite('E:\braille\edges.jpg',edges)
+cv2.imwrite('E:/braille/edges.jpg',edges)
 
 
 #finding the end points of the hough lines
@@ -39,10 +39,10 @@ for i in range (0,len(sorted_m)):
     cv2.line(th2,sorted_m[i][0],sorted_m[i][1],(0,0,255),3)
     
         
-cv2.imwrite('e:\braille\hough_lines.png',th2)
+cv2.imwrite('e:/braille/hough_lines.png',th2)
 
 
-s=cv2.imread('e:\braille\hough_lines.png')
+s=cv2.imread('e:/braille/hough_lines.png')
 p=[]
 for i in range (0,len(sorted_m)):
     if i!=len(sorted_m)-1:
@@ -73,6 +73,6 @@ for x in range(len(p)):
 
     
 for i in range(len(pix)):
-    cv2.imwrite('E:\braille\part' +str(i)+'.jpg',pix[i])
+    cv2.imwrite('E:/braille/part' +str(i)+'.jpg',pix[i])
 
 cv2.destroyAllWindows()

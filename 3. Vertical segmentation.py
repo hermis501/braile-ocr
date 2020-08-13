@@ -7,10 +7,10 @@ import sys
 
 
 
-f=open("E:\braille\braille.txt","w+")
+f=open("E:/braille/braille.txt","w+")
 
 for i in range(4):
-    img=cv2.imread('E:\braille\part'+str(i)+'.jpg')
+    img=cv2.imread('E:/braille/part'+str(i)+'.jpg')
     rows,cols,w = img.shape
 
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -21,12 +21,12 @@ for i in range(4):
     kernel = np.ones((100,10),np.uint8)
     dilation = cv2.dilate(threshold,kernel,iterations = 1)
 
-    cv2.imwrite('E:\braille\W3 characters\dilatedpart.jpg', dilation)
-    k=cv2.imread('E:\braille\W3 characters\dilatedpart.jpg')
+    cv2.imwrite('E:/braille/W3 characters/dilatedpart.jpg', dilation)
+    k=cv2.imread('E:/braille/W3 characters/dilatedpart.jpg')
 
     #defining the edges
     edges = cv2.Canny(k,50,150,apertureSize = 3)
-    cv2.imwrite('E:\braille\cannyEdge1.jpg',edges)
+    cv2.imwrite('E:/braille/cannyEdge1.jpg',edges)
 
     m=[]
     minLineLength = 100
@@ -44,7 +44,7 @@ for i in range(4):
     #drawing lines
     for i in range(len(sorted_m)):
             cv2.line(img,sorted_m[i][0],sorted_m[i][1],(0,0,255),2)
-    cv2.imwrite('E:\braille\W3 characters\hough1.jpg',img)
+    cv2.imwrite('E:/braille/W3 characters/hough1.jpg',img)
 
 
     #defining function distance
@@ -57,7 +57,7 @@ for i in range(4):
                     d =math.sqrt(dx*dx+dy*dy)
                     return d
 
-    hough_lines=cv2.imread('E:\braille\W3 characters\hough1.jpg')
+    hough_lines=cv2.imread('E:/braille/W3 characters/hough1.jpg')
     p=[]
     sorted_m.append(((cols,rows),(cols,0)))
 
@@ -295,7 +295,7 @@ for i in range(4):
             cv2.line(pxl[i],((pxl[i].shape[1])/2,0),(((pxl[i].shape[1])/2),pxl[i].shape[0]),(0,0,255),2)
             cv2.line(pxl[i],(0,(pxl[i].shape[0])/3),(40,(pxl[i].shape[0])/3),(0,0,255),2)
             cv2.line(pxl[i],(0,(2*(pxl[i].shape[0])/3)),(40,(2*(pxl[i].shape[0])/3)),(0,0,255),2)
-            cv2.imwrite('E:\braille\W3 characters\character['+str(i)+'].jpg',pxl[i])
+            cv2.imwrite('E:/braille/W3 characters/character['+str(i)+'].jpg',pxl[i])
 
             #dividing each image into 6 equal rois
             w.append((pxl[i][0:(pxl[i].shape[0])/3,0:(pxl[i].shape[1])/2],     pxl[i][(pxl[i].shape[0])/3:2*((pxl[i].shape[0])/3),0:(pxl[i].shape[1])/2],        pxl[i][2*((pxl[i].shape[0])/3):pxl[i].shape[0],0:(pxl[i].shape[1])/2] ,     pxl[i][0:(pxl[i].shape[0])/3,(pxl[i].shape[1])/2:(pxl[i].shape[1])],     pxl[i][(pxl[i].shape[0])/3:2*((pxl[i].shape[0])/3),(pxl[i].shape[1])/2:(pxl[i].shape[1])] ,      pxl[i][2*(pxl[i].shape[0])/3:pxl[i].shape[0],(pxl[i].shape[1])/2:(pxl[i].shape[1])]))
